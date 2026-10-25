@@ -232,6 +232,9 @@ def build_index(files: dict) -> Index:
             _parse_txt(idx, fid, path, cap)
         elif ext == ".log":
             _parse_log(idx, fid, path, cap)
+        elif ext in (".png", ".jpg", ".jpeg", ".pdf"):
+            from .ocr import parse_visual
+            parse_visual(idx, fid, path, cap)
         else:
             idx.unparsed.append(fid)
     return idx
